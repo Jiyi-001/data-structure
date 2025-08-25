@@ -40,6 +40,7 @@ int main(int argc,char const *argv[])
 }
 */
 /****************动态内存分配示例-字符串**************/
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,3 +54,9 @@ int main(int argc,char const *argv[])
     free(s);
     return 0;
 }
+*/
+/***************************算法分析***************************/
+/*算法要满足的5个重要特性：有穷性、确定性、可行性、输入、输出*/
+/*1.时间复杂度*/
+/*2.空间复杂度*/
+/*3.抽象数据类型ADT(Abstract Data Type)*/
