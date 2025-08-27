@@ -20,7 +20,7 @@
 
 typedef int ElemType;
 
-typedef struct {
+typedef struct Node{
     ElemType data;
     struct Node *next;
 }Node;
@@ -46,6 +46,7 @@ int insertHead(Node *L,ElemType e)
     p -> data = e;
     p -> next = L -> next;
     L -> next = p;
+    return 1;
 }
 
 /*****************************Test1*********************************/
@@ -89,12 +90,13 @@ int main(int argc,char const *argv[])
 Node* get_tail(Node *L)
 {
     Node *p = L -> next;
-    while(p->next != NULL)
+    while(p != NULL)
     {
         p = p -> next;
     }
     return p;
 }
+
 
 Node *insertTail(Node *tail,ElemType e)
 {
@@ -105,6 +107,8 @@ Node *insertTail(Node *tail,ElemType e)
     return p;
 }
 
+/*****************************Test2*********************************/
+/*
 int main(int argc,char const *argv[])
 {
     Node *list = initList();
@@ -116,3 +120,55 @@ int main(int argc,char const *argv[])
     listNode(list);
     return 0;
 }
+*/
+
+int deleteNode(Node *L,int pos)
+{
+    Node *p = L;
+    int i = 0;
+//遍历链表，找到要删除节点的前驱。
+    while(i<pos - 1)
+    {
+        p = p -> next;
+        i++;
+        if(p == NULL)
+        {
+            return 0;
+        }
+    }
+    if(p -> next ==NULL)
+    {
+        printf("删除位置不合法!\n");
+        return 0;
+    }
+    Node *q = p->next;
+    p -> next = q -> next;
+    free(q);
+    return 1;
+}
+
+
+/****************************************单链表的应用*********************************************/
+/*
+[2012]假定带头节点的单链表保存单词，当两个单词有相同的后缀时，则可共享相同的后缀数据空间，例如，"loading"和
+"being"的存储印象如下图所示
+
+str1      +---+      +---+      +---+      +---+      +---+
+          |   | ---> | l | ---> | o | ---> | a | ---> | d | ----
+          +---+      +---+      +---+      +---+      +---+     |
+                                                              +---+      +---+      +---+     
+                                                              | i | ---> | n | ---> | g | ---> NULL
+                                                              +---+      +---+      +---+
+str2      +---+      +---+      +---+                           |
+          |   | ---> | b | ---> | e | --------------------------
+          +---+      +---+      +---+
+
+    设str1和str2分别指向两个单词的头节点，链表节点结构为data|next，请设计一个时间上经可能高效的算法，找出由
+str1和str2指向两个链表共同后缀的起始位置(如图字符i所在结点的位置p)。要求：
+    (1)描述算法的基本设计思想
+    (2)根据设计思想，采用C语言或C++语言描述算法，关键语句要注释说明
+    (3)说明算法的时间复杂度
+*/
+/*
+反转链表
+*/
